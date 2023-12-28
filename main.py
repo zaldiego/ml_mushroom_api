@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from model import HongosModel
+import uvicorn
 
 
 
@@ -44,7 +45,8 @@ async def predict(data: InputData):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en la predicción: {str(e)}")
 
-
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
 #Ejemplos de input de usuario extraídos del dataset importado para la API para poder probar la eficacia de la API de ML
